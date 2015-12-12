@@ -2,6 +2,8 @@ var flower;
 var RUNNINGSPEED = 3;
 var bg;
 
+var vine;
+
 var SCENE_W = 1280;
 var SCENE_H = 8000;
 
@@ -15,6 +17,8 @@ function setup() {
     var myAnimation = flower.addAnimation("floating", "assets/flowa1.png", "assets/flowa3.png");
     flower.animation.frameDelay=30;
     flower.addSpeed(RUNNINGSPEED,flower.rotation-90);
+    
+    vine = new Group();
     
     bg = new Group();
     
@@ -48,8 +52,15 @@ function draw() {
     
     flower.setSpeed(flower.getSpeed(),flower.rotation-90);	
     flower.rotation%=360;
-      
+    
+    
+    var gr = createSprite(flower.position.x,flower.position.y,50,25);
+    gr.addAnimation("normal", "assets/vine"+Math.floor(Math.random()*9)+".png");
+    gr.rotation=flower.rotation;
+    vine.add(gr);
+    
     drawSprites(bg);
+    drawSprites(vine);
     drawSprite(flower);
     
 }
