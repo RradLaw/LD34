@@ -22,7 +22,7 @@ function setup() {
     bg = new Group();
     
     //create some background for visual reference
-    for(var i=0; i<150; i++) {
+    for(var i=0; i<200; i++) {
         //create a sprite and add the 3 animations
         var cloud = createSprite(random(-width, SCENE_W+width), random(-height, SCENE_H+height));
         //cycles through clouds 0 1 2 3
