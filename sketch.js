@@ -11,13 +11,10 @@ function setup() {
     //create a sprite and add the 3 animations
     flower = createSprite(400, 200, 50, 100);
     
-    var myAnimation = flower.addAnimation("floating", "assets/ghost_standing0001.png", "assets/ghost_standing0007.png");
-    myAnimation.offY = 18;
-    
-    
-      flower.addSpeed(RUNNINGSPEED,flower.rotation-90);
-  
-    flower.addAnimation("moving", "assets/flower_walk0001.png", "assets/flower_walk0004.png");
+    //var myAnimation = flower.addAnimation("floating", "assets/ghost_standing0001.png", "assets/ghost_standing0007.png");
+    var myAnimation = flower.addAnimation("floating", "assets/flowa1.png", "assets/flowa3.png");
+    flower.animation.frameDelay=30;
+    flower.addSpeed(RUNNINGSPEED,flower.rotation-90);
     
     bg = new Group();
     
