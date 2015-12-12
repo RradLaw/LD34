@@ -7,13 +7,12 @@ var vine;
 var SCENE_W = 1280;
 var SCENE_H = 8000;
 
+var prevX=0,prevY=0;
+
 function setup() {
     createCanvas(1280,720);
     
-    //create a sprite and add the 3 animations
     flower = createSprite(400, 200, 50, 100);
-    
-    //var myAnimation = flower.addAnimation("floating", "assets/ghost_standing0001.png", "assets/ghost_standing0007.png");
     var myAnimation = flower.addAnimation("floating", "assets/flowa1.png", "assets/flowa3.png");
     flower.animation.frameDelay=30;
     flower.addSpeed(RUNNINGSPEED,flower.rotation-90);
@@ -21,15 +20,12 @@ function setup() {
     vine = new Group();
     
     bg = new Group();
-    
-    //create some background for visual reference
     for(var i=0; i<200; i++) {
-        //create a sprite and add the 3 animations
         var cloud = createSprite(random(-width, SCENE_W+width), random(-height, SCENE_H+height));
-        //cycles through clouds 0 1 2 3
         cloud.addAnimation("normal", "assets/cloud"+i%4+".png");
         bg.add(cloud);
     }
+    
     flower.position.y=SCENE_H;
 }
 
@@ -53,11 +49,14 @@ function draw() {
     flower.setSpeed(flower.getSpeed(),flower.rotation-90);	
     flower.rotation%=360;
     
-    
-    var gr = createSprite(flower.position.x,flower.position.y,50,25);
-    gr.addAnimation("normal", "assets/vine"+Math.floor(Math.random()*9)+".png");
-    gr.rotation=flower.rotation;
-    vine.add(gr);
+    if(flower.position.x>prevX+10 || flower.position.x<prevX-10 || flower.position.y>prevY+10 || flower.position.y<prevY-10) {
+        prevX=flower.position.x;
+        prevY=flower.position.y;
+        var gr = createSprite(flower.position.x,flower.position.y,25,25);
+        gr.addAnimation("normal", "assets/vine"+Math.floor(Math.random()*9)+".png");
+        gr.rotation=flower.rotation;
+        vine.add(gr);
+    }
     
     drawSprites(bg);
     drawSprites(vine);
